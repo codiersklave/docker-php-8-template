@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
   nano \
   vim \
   software-properties-common \
+  libmemcached-dev \
   zlib1g-dev \
   zip \
   && rm -rf /var/lib/apt/lists/*
@@ -29,6 +30,7 @@ RUN ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime && echo "Europe/Berl
 
 RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
 RUN docker-php-ext-install exif && docker-php-ext-enable exif
+RUN pecl install memcached-3.1.5 && docker-php-ext-enable memcached
 RUN a2enmod rewrite
 
 ENV APACHE_RUN_USER www-data
