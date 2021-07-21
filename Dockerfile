@@ -1,5 +1,5 @@
 ARG PHP_VERSION=8.0-apache
-ARG XDEBUG_VERSION=3.0.0
+ARG XDEBUG_VERSION=3.0.2
 
 FROM php:${PHP_VERSION} as build
 
@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
   software-properties-common \
   zlib1g-dev \
   zip \
+  util-linux \
   && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
